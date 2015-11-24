@@ -24,6 +24,7 @@ r2k.df$PBratio = as.numeric(r2k.df$PBratio)
 
 ## set NA to 0
 r2k.df[is.na(r2k.df)] = 0
+r2k.df$TotMktCap = 0
 
 ## get total mkt cap and ent val for each industry
 r2kTotMktCap = r2k.df %>% group_by(Sector) %>% summarise(mktcaptot = sum(Market.Cap, na.rm=TRUE))
@@ -31,12 +32,12 @@ r2kTotEntVal = r2k.df %>% group_by(Sector) %>% summarise(mktcaptot = sum(Market.
 
 iterator= r2kTotMktCap$Sector
 for(i in iterator) {
-  tmc = sum(r2kTotMktCap[r2kTotMktCap$Sector == i,]$mktcaptot)
+  tmc = r2kTotMktCap[r2kTotMktCap$Sector == i,]$mktcaptot[1]
   r2k.df[r2k.df$Sector == i,]$TotMktCap = tmc 
 }
 ## add total market cap and ent values as columns by Sector
 q = c(0.34, 0.50, 0.66)
-
+r2k.df
 r2ksumm = r2k.df %>% 
   group_by (Sector) %>% 
   summarise_each(funs(median), 

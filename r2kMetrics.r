@@ -41,8 +41,8 @@ r2k.df
 r2ksumm = r2k.df %>% 
   group_by (Sector) %>% 
   summarise_each(funs(median), 
-                 EV.EBITDA, 
-                 PEratio,
-                 PSratio,
-                 PBratio)
+                 EV.EBITDA*Market.Cap/TotMktCap, 
+                 PEratio*Market.Cap/TotMktCap,
+                 PSratio*Market.Cap/TotMktCap,
+                 PBratio*Market.Cap/TotMktCap)
 

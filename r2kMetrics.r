@@ -52,10 +52,14 @@ r2k.df$wEV2EBIT = r2k.df$EV.EBITDA * r2k.df$Market.Cap / r2k.df$TotMktCap
 r2k.df$wPE = r2k.df$PEratio * r2k.df$Market.Cap / r2k.df$TotMktCap
 r2k.df$wPS = r2k.df$PSratio * r2k.df$Market.Cap / r2k.df$TotMktCap
 r2k.df$wPB = r2k.df$PBratio * r2k.df$Market.Cap / r2k.df$TotMktCap
+r2k.df$wEV2EBIT5 = r2k.df$EV2EBITmed * r2k.df$Market.Cap / r2k.df$TotMktCap
+r2k.df$wPE5 = r2k.df$PEmed * r2k.df$Market.Cap / r2k.df$TotMktCap
+r2k.df$wPS5 = r2k.df$PSmed * r2k.df$Market.Cap / r2k.df$TotMktCap
+r2k.df$wPB5 = r2k.df$PBmed * r2k.df$Market.Cap / r2k.df$TotMktCap
 
 ## get median weighted valuation metrics by industry
 r2ksumm = r2k.df %>% 
     group_by(Sector) %>% 
-    summarise_each(funs(median), wEV2EBIT, wPE, wPS, wPB) 
+    summarise_each(funs(sum), wEV2EBIT, wEV2EBIT5, wPE, wPE5, wPS, wPS5, wPB, wPB5) 
  
 r2ksumm

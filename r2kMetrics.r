@@ -1,5 +1,7 @@
-# r2kMetrics.r
-# exploratory plots of R2k index
+## r2kMetrics.r
+## summary statistics for the Russell 2000 index
+## based on Ycharts screen ccR2kmetrics
+##
 
 library(ggplot2)
 library(dplyr)
@@ -184,3 +186,7 @@ head(EV.EBITDACompsumm)
 r2ksumm = merge(merge(merge(PSCompsumm, PECompsumm, by="Sector"), 
                       PBCompsumm, by = "Sector"), EV.EBITDACompsumm, by="Sector")
 r2ksumm
+
+## boxplots of distributions
+# p = ggplot(subset(r2k.df, PEratio<=30), aes(Sector, PEratio)) + geom_boxplot()
+# p
